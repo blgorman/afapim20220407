@@ -10,8 +10,9 @@ on:
   workflow_dispatch:
 
 env:
+  AZURE_FUNCTIONAPP_NAME: APIMFunctionsDemo-MPLS-DNUG
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
-  DOTNET_VERSION: 'v3.1' # set this to the dotnet version to use
+  DOTNET_VERSION: 'v3.1.417' # set this to the dotnet version to use
 
 jobs:
   build-and-deploy:
@@ -26,17 +27,18 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
       - name: 'Resolve Project Dependencies Using Dotnet'
-        shell: pwsh
+        shell: bash
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
           dotnet build --configuration Release --output ./output
           popd
-
+          
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
         id: fa
         with:
-          app-name: 'APIMFunctionsDemo-MPLS-DNUG'
-          slot-name: 'Production'
+          app-name: ${{ env.AZURE_FUNCTIONAPP_NAME }}
           package: '${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}/output'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0DDC5448993649A79DD6AFB5EFF9CA25 }}
+
+
