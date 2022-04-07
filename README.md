@@ -45,7 +45,8 @@ Some of the code and some of the concepts are ported and modified based on this 
 
 ## Additional Links
 
-Some detailed information for serverless architectures can be found at the following links:
+Additional information for serverless architectures and APIM and Azure Functions can be found at the following links:
 
 - [Serverless apps: Architecture, patterns, and Azure implementation](https://docs.microsoft.com/dotnet/architecture/serverless/?WT.mc_id=AZ-MVP-5004334)
 
+- [Secure your APIS using client certificate authentication in API Management](https://docs.microsoft.com/en-us/azure/api-management/api-management-howto-mutual-certificates-for-clients?WT.mc_id=AZ-MVP-5004334)  
